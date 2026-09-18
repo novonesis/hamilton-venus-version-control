@@ -1,41 +1,17 @@
 # GUI Modules
 
-## gui.app
+The desktop interface is a local web app: `webgui.app` starts it, `webgui.api`
+is the bridge the page calls into, and `webgui.log_bridge` streams log records
+to it.
 
-::: gui.app
+## webgui.app
 
-## gui.shared
+::: webgui.app
 
-::: gui.shared
+## webgui.api
 
-## gui.markdown_renderer
+::: webgui.api
 
-::: gui.markdown_renderer
+## webgui.log_bridge
 
-## gui.usage_guide_tab
-
-::: gui.usage_guide_tab
-
-## gui.folder_creation_tab
-
-::: gui.folder_creation_tab
-
-## gui.folder_sync_tab
-
-::: gui.folder_sync_tab
-
-## gui.conversion_tab
-
-::: gui.conversion_tab
-
-## gui.labware_tab
-
-::: gui.labware_tab
-
-## gui.library_tab
-
-::: gui.library_tab
-
-## gui.search_tab
-
-::: gui.search_tab
+::: webgui.log_bridge
