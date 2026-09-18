@@ -1,0 +1,4 @@
+source,destination,purpose
+C:\source_test,C:\dest_test,Labware_monotoring
+C:\Program Files (x86)\HAMILTON\Test_labware1,C:\Program Files (x86)\HAMILTON\Test_labware2,Labware_monotoring
+C:\Program Files (x86)\HAMILTON\test_copy_v2,C:\Program Files (x86)\HAMILTON\trash,Labware_monotoring

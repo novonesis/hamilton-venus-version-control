@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hamilton Method Versionator</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="css/custom.css" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- ── Tab Strip ────────────────────────────────────────── -->
+    <nav class="tab-strip" id="tabStrip">
+      <a href="#" data-tab="usage-guide" class="active">📖 Usage Guide</a>
+      <a href="#" data-tab="folder-creator">📁 Folder Creator</a>
+      <a href="#" data-tab="folder-sync">🔗 Folder Sync</a>
+      <a href="#" data-tab="file-converter">🔄 File Converter</a>
+      <a href="#" data-tab="labware-sync">🧪 Labware Sync</a>
+      <a href="#" data-tab="library-sync">📚 Library Sync</a>
+      <a href="#" data-tab="file-search">🔍 File Search</a>
+    </nav>
+
+    <!-- ── Tab Panels ───────────────────────────────────────── -->
+    <div class="tab-content-area">
+
+      <!-- Tab 1: Usage Guide -->
+      <section id="panel-usage-guide" class="tab-panel active">
+        <div class="markdown-body" id="usageGuideContent">
+          <p class="text-muted">Loading usage guide...</p>
+        </div>
+      </section>
+
+      <!-- Tab 2: Folder Creator -->
+      <section id="panel-folder-creator" class="tab-panel">
+        <div class="form-grid">
+          <label>Destination Path:</label>
+          <input type="text" class="input" id="fcDestPath" placeholder="Select destination..." readonly />
+          <button class="btn btn-primary" id="fcBrowseDest">Browse</button>
+
+          <label>Method Name:</label>
+          <input type="text" class="input" id="fcMethodName" placeholder="Enter method name..." />
+          <span></span>
+
+          <label>.med File (Optional):</label>
+          <input type="text" class="input" id="fcMedFile" placeholder="Select .med file..." readonly />
+          <button class="btn btn-primary" id="fcBrowseMed">Browse .med</button>
+        </div>
+        <button class="btn btn-primary btn-lg" id="fcCreate" style="width: 100%;">Create Folder Structure</button>
+
+        <!-- Confirmation dialog -->
+        <dialog id="fcConfirmDialog">
+          <h3>Folder Already Exists</h3>
+          <p id="fcConfirmMessage"></p>
+          <div class="dialog-actions">
+            <button class="btn btn-ghost" id="fcConfirmNo">Cancel</button>
+            <button class="btn btn-primary" id="fcConfirmYes">Continue</button>
+          </div>
+        </dialog>
+      </section>
+
+      <!-- Tab 3: Folder Sync -->
+      <section id="panel-folder-sync" class="tab-panel">
+        <div class="sync-row">
+          <button class="btn btn-primary" id="fsSelectCsv">Select CSV File</button>
+          <span class="label-value" id="fsCsvLabel">CSV: Not selected</span>
+        </div>
+        <div class="sync-row">
+          <label class="text-sm" style="color: var(--color-text-secondary);">Frequency (sec):</label>
+          <input type="number" class="input" id="fsFrequency" value="10" min="1" max="3600" style="width: 100px;" />
+        </div>
+        <div class="sync-row">
+          <button class="btn btn-primary" id="fsToggle">Start Monitoring</button>
+          <span class="status-label" id="fsStatus">Status: Not Started</span>
+        </div>
+      </section>
+
+      <!-- Tab 4: File Converter -->
+      <section id="panel-file-converter" class="tab-panel">
+        <div class="btn-row">
+          <button class="btn btn-primary btn-lg" id="cvSelectFolder">Select Folder</button>
+          <button class="btn btn-primary btn-lg" id="cvStartConversion" disabled>Start Conversion</button>
+        </div>
+        <div class="path-display" id="cvPathDisplay">No folder selected</div>
+        <div class="log-area" id="cvLogArea"></div>
+      </section>
+
+      <!-- Tab 5: Labware Sync -->
+      <section id="panel-labware-sync" class="tab-panel">
+        <div class="btn-row">
+          <button class="btn btn-primary btn-lg" id="lwSelectFolder">Select Source Folder</button>
+          <button class="btn btn-primary btn-lg" id="lwProcess" disabled>Process .lay File</button>
+        </div>
+        <div class="path-display" id="lwPathDisplay">No folder selected</div>
+        <div class="log-area" id="lwLogArea"></div>
+      </section>
+
+      <!-- Tab 6: Library Sync -->
+      <section id="panel-library-sync" class="tab-panel">
+        <div class="btn-row">
+          <button class="btn btn-primary btn-lg" id="lsSelectFile">Select HSL File</button>
+          <button class="btn btn-primary btn-lg" id="lsStartSync" disabled>Start Library Sync</button>
+        </div>
+        <div class="path-display" id="lsPathDisplay">No file selected</div>
+        <div class="split-pane">
+          <div class="log-area" id="lsLogArea"></div>
+          <div class="dep-tree" id="lsDepTree">
+            <span class="text-muted">Dependency tree will appear here after sync.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 7: File Search -->
+      <section id="panel-file-search" class="tab-panel">
+        <div class="btn-row">
+          <button class="btn btn-primary btn-lg" id="srSelectFolder">Select Folder</button>
+          <button class="btn btn-primary btn-lg" id="srSearch">Search</button>
+        </div>
+        <div class="path-display" id="srPathDisplay">No folder selected</div>
+        <div class="toolbar">
+          <input type="text" class="input" id="srQuery" placeholder="Enter search string..." />
+          <label class="checkbox-label">
+            <input type="checkbox" id="srIncludeAux" />
+            Include traces &amp; logs (.trc, .log, .txt, .adp)
+          </label>
+        </div>
+        <div class="results-table-wrapper">
+          <table class="results-table" id="srResultsTable">
+            <thead>
+              <tr>
+                <th>File Path</th>
+                <th style="width: 80px;">Line</th>
+                <th>Line Content</th>
+              </tr>
+            </thead>
+            <tbody id="srResultsBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </div><!-- /tab-content-area -->
+  </div><!-- /app-shell -->
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast"></div>
+
+  <script src="js/vendor/marked.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    # The application binds Windows-only APIs (pywin32, winshell) and drives
+    # the Hamilton Venus converter as a subprocess, so the test job has to run
+    # on Windows to import the modules at all.
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Install Python 3.13
+        run: uv python install 3.13
+
+      # Fails if uv.lock is out of date with pyproject.toml, so a dependency
+      # change cannot land unlocked.
+      - name: Verify the lockfile is current
+        run: uv lock --check
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Lint
+        run: uv run ruff check .
+
+      - name: Check formatting
+        run: uv run ruff format --check .
+
+      - name: Test
+        run: uv run pytest -v
+
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: TruffleHog secret scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          extra_args: --only-verified

@@ -1,0 +1,67 @@
+[project]
+name = "hamilton-method-versionator"
+version = "1.0.0"
+description = "Git-based version control for Hamilton liquid-handling robot methods"
+readme = "README.md"
+license = "Apache-2.0"
+authors = [
+  { name = "Novonesis" },
+]
+dependencies = [
+  "pywin32",
+  "loguru",
+  "pywebview>=5.0",
+  "pyinstaller>=6.13.0",
+]
+requires-python = "==3.13.*"
+
+[project.urls]
+Homepage = "https://github.com/novozymes-digital/hamilton-venus-version-control"
+Issues = "https://github.com/novozymes-digital/hamilton-venus-version-control/issues"
+
+[tool.setuptools.packages.find]
+where = ["Deployment"]
+
+# Dependency groups, not [project.optional-dependencies]: these are development
+# tools, never installed by a consumer of the package, and `uv sync` installs
+# the dev group by default. The docs group stays separate so a documentation
+# build does not drag in the test and lint toolchain.
+[dependency-groups]
+dev = [
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
+  "ruff>=0.6",
+  "pyinstaller-hooks-contrib",
+]
+docs = [
+  "mkdocs>=1.6",
+  "mkdocstrings[python]>=0.26",
+  "mkdocs-material>=9.5",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# The application modules live in Deployment/ rather than a src/ layout, so
+# both the import path and the coverage target point there.
+pythonpath = ["Deployment"]
+addopts = "-q --cov=Deployment --cov-report=term-missing"
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+# Generated and vendored trees are not ours to lint.
+extend-exclude = ["Development", "Deployment/webgui/assets/js/vendor"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "S"]
+# `ruff format` owns line length: it wraps every code line it can at the
+# line-length above. What is left over is prose inside triple-quoted strings
+# (the README this tool generates into each versioned method folder) and long
+# comments, where a hard wrap would change generated output rather than
+# formatting. Enforcing E501 on top of the formatter only ever flags the lines
+# the formatter deliberately declined to touch.
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# assert is how pytest expresses an assertion; S101 exists for production code.
+"tests/**" = ["S101"]

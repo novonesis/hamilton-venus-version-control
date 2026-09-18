@@ -1,0 +1,48 @@
+# Excluded from `git archive`, which is what scripts/publish.sh uses to build
+# the public tree. This is defence in depth: publish.sh also deletes the
+# governance folder explicitly, and the pre-push hook refuses GitHub pushes
+# outright.
+.governance/ export-ignore
+.githooks/   export-ignore
+
+# The publication tooling itself is internal. It describes the route out of
+# the internal repository and has no function inside a published mirror, so it
+# is excluded rather than shipped as dead weight.
+scripts/publish.sh export-ignore
+
+# The agent entry points are internal too. The skill, the prompts and the
+# Copilot instructions all name SOP-C, the classification procedure and the
+# internal GitLab host, and SOP-C 5.5 forbids publishing an internal hostname.
+# .github/workflows/ is deliberately not listed: a public repository needs its
+# CI. tests/test_leak_guard.py proves each of these lines is load bearing.
+.github/skills/            export-ignore
+.github/prompts/           export-ignore
+.github/copilot-instructions.md export-ignore
+
+# ---------------------------------------------------------------------------
+# Hamilton Method Versionator: project-specific mirror exclusions.
+#
+# These paths stay in the internal GitLab repository, where they are useful for
+# future development and reference, and never reach the public GitHub mirror.
+# scripts/publish.sh reads this list back out of this file, deletes each path
+# from the staging tree and refuses to publish if one survives, so every line
+# here is enforced twice: once by `git archive` and once by the script.
+# ---------------------------------------------------------------------------
+
+# Experimental R&D material. Two notebooks carrying developer-machine paths,
+# the ML_STARLiquids liquid-class database (.mdb/.ldb/.zip), three superseded
+# folder-monitor prototypes and their dev logs. None of it is part of the
+# product, and the notebooks would be a SOP-C 5.5 personal-path finding the
+# moment they were published.
+Development/ export-ignore
+
+# Runtime log trees. Untracked and gitignored as of the open-source cleanup,
+# but export-ignored as well so that a log written before someone re-runs the
+# app cannot reach the mirror even if it is committed by accident. Logs carry
+# machine IDs and C:\Users\<name> paths by construction.
+Data/logs/            export-ignore
+Deployment/Data/Logs/ export-ignore
+
+# Adobe Illustrator source for the logo. Kept internally so the logo can be
+# re-cut; the published mirror ships the rendered PNG that the README uses.
+Data/logo.ai export-ignore

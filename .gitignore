@@ -1,0 +1,40 @@
+/**/~*.*
+# Ignore all .pyc files in the entire repository
+*.pyc
+
+# Python virtual environments
+.venv/
+
+# Byte-compiled / optimized files
+__pycache__/
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+
+# Logs
+Data/logs/
+Data/Logs/
+*.log
+
+# MkDocs build output
+site/
+
+# Environment variables
+.env
+
+# Test cache
+.pytest_cache/
+
+# Claude Code local config
+.claude/
+
+# macOS Finder metadata
+.DS_Store
+
+# coverage.py data: a SQLite file that stores absolute paths from the machine
+# the tests ran on
+.coverage
+.coverage.*

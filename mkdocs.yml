@@ -1,0 +1,31 @@
+site_name: Hamilton Method Versionator
+site_description: API documentation for the Hamilton Method Versionator
+repo_url: https://github.com/novozymes-digital/hamilton-venus-version-control
+
+theme:
+  name: material
+  palette:
+    primary: teal
+  features:
+    - content.code.copy
+    - navigation.sections
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [Deployment]
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+            members_order: source
+
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - API Reference:
+      - Core Modules: api/core.md
+      - GUI Modules: api/gui.md
+  - Contributing: contributing.md
