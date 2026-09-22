@@ -335,8 +335,8 @@ Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines
 - Setting up a development environment
 - Submitting pull requests
 
-**Before you start:** this GitHub repository is a published mirror whose history
-is replaced on every release. That changes what happens to your commits, so read
+**Before you start:** this GitHub repository is a published mirror that
+receives one commit per release. That changes what happens to your commits, so read
 [how this repository relates to ours](CONTRIBUTING.md#how-this-repository-relates-to-ours)
 first.
 

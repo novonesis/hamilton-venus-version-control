@@ -43,6 +43,27 @@ jobs:
       - name: Test
         run: uv run pytest -v
 
+  # A strict build fails on a nav entry with no file behind it and on an API
+  # page for a module that no longer exists. Both drift silently otherwise:
+  # docs/api/gui.md documented a GUI rewritten months before anyone noticed.
+  # Windows, like the tests: building the docs installs the project, and
+  # pywin32 does not install anywhere else.
+  docs:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Install Python 3.13
+        run: uv python install 3.13
+
+      - name: Build the docs strictly
+        run: uv run --frozen --group docs mkdocs build --strict
+
   secret-scan:
     runs-on: ubuntu-latest
     steps:
