@@ -67,7 +67,7 @@ Please open an issue before starting work on a large change so we can discuss th
 
 ```bash
 # Clone the repository
-git clone https://github.com/novozymes-digital/hamilton-venus-version-control.git
+git clone https://github.com/novonesis/hamilton-venus-version-control.git
 cd hamilton-venus-version-control
 
 # Install dependencies, including the dev group (pytest, ruff)

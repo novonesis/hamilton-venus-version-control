@@ -1,5 +1,8 @@
 # Hamilton Method Versionator
 
+Developed by the Automation Department, Microbial Cultures and Research,
+Novonesis R&D.
+
 A desktop tool for Hamilton Venus liquid-handling systems that transforms
 non-versioned Hamilton methods into fully versioned, portable methods
 seamlessly — including library dependency resolution, labware localisation,

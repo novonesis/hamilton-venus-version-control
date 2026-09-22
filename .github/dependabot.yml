@@ -1,0 +1,12 @@
+# Security updates for Python dependencies are already on at repository level.
+# This keeps the pinned GitHub Actions current too: they are pinned to commit
+# SHAs, which nothing else would ever move.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]

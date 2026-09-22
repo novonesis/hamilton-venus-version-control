@@ -16,8 +16,8 @@ dependencies = [
 requires-python = "==3.13.*"
 
 [project.urls]
-Homepage = "https://github.com/novozymes-digital/hamilton-venus-version-control"
-Issues = "https://github.com/novozymes-digital/hamilton-venus-version-control/issues"
+Homepage = "https://github.com/novonesis/hamilton-venus-version-control"
+Issues = "https://github.com/novonesis/hamilton-venus-version-control/issues"
 
 [tool.setuptools.packages.find]
 where = ["Deployment"]

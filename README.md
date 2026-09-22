@@ -6,11 +6,14 @@
 
 **Git-based version control for Hamilton liquid-handling robot methods**
 
+Developed by the Automation Department, Microbial Cultures and Research, Novonesis R&D.
+
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/python-3.13-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)
 ![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
-[![CI](https://github.com/novozymes-digital/hamilton-venus-version-control/actions/workflows/ci.yml/badge.svg)](https://github.com/novozymes-digital/hamilton-venus-version-control/actions/workflows/ci.yml)
+[![CI](https://github.com/novonesis/hamilton-venus-version-control/actions/workflows/ci.yml/badge.svg)](https://github.com/novonesis/hamilton-venus-version-control/actions/workflows/ci.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/novonesis/hamilton-venus-version-control/badge)](https://scorecard.dev/viewer/?uri=github.com/novonesis/hamilton-venus-version-control)
 
 </div>
 
@@ -102,7 +105,7 @@ Copy these 4 files to any folder on any Windows machine and they will work.
 ### Option B: Run from source
 
 ```bash
-git clone https://github.com/novozymes-digital/hamilton-venus-version-control.git
+git clone https://github.com/novonesis/hamilton-venus-version-control.git
 cd hamilton-venus-version-control
 uv sync
 uv run python Deployment/main.py
