@@ -1,6 +1,7 @@
 site_name: Hamilton Method Versionator
 site_description: API documentation for the Hamilton Method Versionator
-repo_url: https://github.com/novozymes-digital/hamilton-venus-version-control
+site_author: Automation Department, Microbial Cultures and Research, Novonesis R&D
+repo_url: https://github.com/novonesis/hamilton-venus-version-control
 
 theme:
   name: material

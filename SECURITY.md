@@ -5,7 +5,7 @@
 Please do **not** open a public issue for a security vulnerability.
 
 Report it privately through
-[GitHub private vulnerability reporting](https://github.com/novozymes-digital/hamilton-venus-version-control/security/advisories/new),
+[GitHub private vulnerability reporting](https://github.com/novonesis/hamilton-venus-version-control/security/advisories/new),
 or contact the maintainer named in [CODEOWNERS](CODEOWNERS).
 
 You can expect an acknowledgement within five working days and an assessment
