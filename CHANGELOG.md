@@ -7,7 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-Nothing yet.
+### Changed
+- README and the documentation site name the team that developed the tool:
+  the Automation Department, Microbial Cultures and Research, Novonesis R&D
+- Project URLs point at the repository's home in the Novonesis organisation,
+  https://github.com/novonesis/hamilton-venus-version-control
+- CI pins every GitHub Action to a commit SHA; the secret scan no longer
+  follows TruffleHog's moving `main` branch
+- CODEOWNERS covers the whole repository
+
+### Added
+- OpenSSF Scorecard workflow and badge
+- Dependabot keeps the pinned GitHub Actions current
 
 ## [1.0.0] - 2026-08-25
 
